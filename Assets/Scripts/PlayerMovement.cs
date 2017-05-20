@@ -23,16 +23,57 @@ public class PlayerMovement : MonoBehaviour {
         float mouseInput = Input.GetAxis("Mouse X");
         Vector3 lookhere = new Vector3(0, mouseInput, 0);
         transform.Rotate(lookhere);
-        Move(h, v);
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            moveLeft(speed);
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            moveRight(speed);
+        }
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            moveForward(speed);
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            scootBack(speed);
+        }
+
+        //if (playerRigidbody != colliding with terrain) {
+        //    gravity += 100;
+        //}
      
     }
 
-    void Move(float h, float v)
+    void moveRight(float speed)
     {
-        movement.Set(h, 0f, v);
-        movement = movement.normalized * speed * Time.deltaTime;
-        playerRigidbody.MovePosition(transform.position + movement);
-        
-
+        transform.localPosition += transform.right * speed * Time.deltaTime;
     }
+
+    void moveLeft(float speed)
+    {
+        transform.localPosition -= transform.right * speed * Time.deltaTime;
+    }
+
+    void moveForward(float speed)
+    {
+        transform.localPosition += transform.forward * speed * Time.deltaTime;
+    }
+
+    void scootBack(float speed)
+    {
+        transform.localPosition -= transform.forward * speed * Time.deltaTime;
+    }
+
+    //void Move(float h, float v)
+    //{
+    //    movement.Set(h, 0f, v);
+    //    movement = movement.normalized * speed * Time.deltaTime;
+    //    playerRigidbody.MovePosition(transform.position + movement);
+    //}
 }
