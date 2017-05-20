@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class CharacterDemoController : MonoBehaviour 
+
 {
 	Animator animator;
 	public GameObject		floorPlane;//in this demonstration this is set manually, the Retail Ability system has methods for dealing with this automatically via data structures for environments
@@ -18,8 +19,8 @@ public class CharacterDemoController : MonoBehaviour
 	public Vector3 		attackPos;
 	public Vector3		lookAtPos;
 	float				gravity = 0.3f;//unused in this demonstration
-	
-	RaycastHit hit;
+
+    RaycastHit hit;
 	Ray ray;
 	
 	public bool rightButtonDown=false;//we use this to "skip out" of consecutive right mouse down...
@@ -29,6 +30,7 @@ public class CharacterDemoController : MonoBehaviour
 	{	
 		animator = GetComponentInChildren<Animator>();//need this...
 		movementTargetPosition = transform.position;//initializing our movement target as our current position
+
 	}
 	
 	// Update is called once per frame
