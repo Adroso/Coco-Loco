@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour {
     Vector3 movement;
     public float speed = 6f;
     int floorMask;
+    public bool isMoving;
 
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        isMoving = false;
 
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
@@ -27,22 +29,27 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKey(KeyCode.A))
         {
             moveLeft(speed);
+            isMoving = true;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             moveRight(speed);
+            isMoving = true;
         }
 
         if (Input.GetKey(KeyCode.W))
         {
             moveForward(speed);
+            isMoving = true;
         }
 
         if (Input.GetKey(KeyCode.S))
         {
             scootBack(speed);
+            isMoving = true;
         }
+
 
         //if (playerRigidbody != colliding with terrain) {
         //    gravity += 100;
