@@ -55,6 +55,11 @@ public class PlayerMovement : MonoBehaviour {
             Animating(true);
 
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            attackAnimate();
+        }
      
     }
 
@@ -96,5 +101,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             anim.SetTrigger("Die");
         }
+    }
+
+    private void attackAnimate()
+    {
+        anim.SetTrigger("Attack");
     }
 }
