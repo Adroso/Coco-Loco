@@ -37,10 +37,11 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentHealth < startingHelath && (Time.time > (timestamp + 10.0f))) //10 seconds after no damage
+        if (currentHealth < startingHelath &&(Time.time > (regenDelayTS + 2.0f)) && (Time.time > (timestamp + 10.0f))) //10 seconds after no damage and 2 seconds after last regen
         {
             currentHealth += regeneration;
             healthSlider.value = currentHealth;
+            regenDelayTS = Time.time;
             timestamp = 0f;
         }
 
