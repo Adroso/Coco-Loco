@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyBehaviour : MonoBehaviour {
 
     Transform player;
+    public int speed;
     //PlayerHealth playerHealth;
     //EnemyHealth enemyHealth;
     NavMeshAgent nav;
