@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour {
 
     public int startingHelath = 100;
-    public int cuurrentHealth;
+    public int currentHealth;
     public Slider healthSlider;
     public Image damageImage;
     public AudioClip deathClip;
@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour {
         anim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         playerMovement = GetComponent<PlayerMovement>();
-        cuurrentHealth = startingHelath;
+        currentHealth = startingHelath;
     }
 		
 	
@@ -33,7 +33,38 @@ public class PlayerHealth : MonoBehaviour {
 	void Update () {
     if (damaged)
     {
+            damageImage.color = flashColour;
+  
+    }
+        else
+        {
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+        }
+	}
+
+    public void TakeDamage(int amount)
+    {
+        damaged = true;
+        currentHealth -= amount;
+        healthSlider.value = currentHealth;
+        //play hurt audio
+
+        if(currentHealth <=0 && !isDead)
+        {
+            Death();
+        }
 
     }
-	}
+
+    void Death()
+    {
+        isDead = true;
+
+        anim.SetTrigger("Die");
+
+        //play death audio
+
+        playerMovement.enabled = false;
+
+    }
 }
