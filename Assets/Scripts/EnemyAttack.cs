@@ -42,6 +42,7 @@ public class EnemyAttack : MonoBehaviour
         {
             // ... the player is no longer in range.
             playerInRange = false;
+            anim.SetBool("AttackPlayer", false);
         }
     }
 
@@ -59,8 +60,9 @@ public class EnemyAttack : MonoBehaviour
         if (playerHealth.currentHealth <= 0)
         {
             anim.SetTrigger("Die");
+            anim.SetTrigger("PlayerDead");
         }
-        anim.SetBool("AttackPlayer", false);
+       
     }
 
     void Attack()
