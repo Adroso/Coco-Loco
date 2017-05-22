@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
     Rigidbody playerRigidbody;
+    PlayerHealth playerHealth;
     Vector3 movement;
     public float speed = 6f;
     int floorMask;
@@ -11,11 +12,13 @@ public class PlayerMovement : MonoBehaviour {
     Animator anim;
     
 
+
     private void Awake()
     {
         floorMask = LayerMask.GetMask("Floor");
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     private void Update()
@@ -103,6 +106,9 @@ public class PlayerMovement : MonoBehaviour {
         if (other.tag == "Water")
         {
             anim.SetTrigger("Die");
+            //Kills Player
+            playerHealth.TakeDamage(100);
+            
         }
     }
 
