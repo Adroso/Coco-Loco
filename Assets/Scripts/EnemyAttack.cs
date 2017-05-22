@@ -18,7 +18,7 @@ public class EnemyAttack : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("player");
+        player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
         anim = GetComponent<Animator>();
@@ -50,15 +50,17 @@ public class EnemyAttack : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= attackSpeed && playerInRange && enemyHealth.currentHealth > 0)
+        if (timer >= attackSpeed && playerInRange /*&& enemyHealth.currentHealth > 0*/)
         {
             Attack();
+
         }
 
         if (playerHealth.currentHealth <= 0)
         {
-            anim.SetTrigger("PlayerDead");
+            anim.SetTrigger("Die");
         }
+        anim.SetBool("AttackPlayer", false);
     }
 
     void Attack()
@@ -67,7 +69,10 @@ public class EnemyAttack : MonoBehaviour
 
         if (playerHealth.currentHealth > 0)
         {
+            anim.SetBool("AttackPlayer", true);
             playerHealth.TakeDamage(attackDamage);
         }
+       
     }
+
 }
