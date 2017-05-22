@@ -22,7 +22,6 @@ public class EnemyHealth : MonoBehaviour {
     void Awake () {
         anim = GetComponent<Animator>();
         enemyAudio = GetComponent<AudioSource>();
-        hitParticles = GetComponentInChildren<ParticleSystem>();
         capsuleCollider = GetComponent<CapsuleCollider>();
 
         currentHealth = startingHealth;

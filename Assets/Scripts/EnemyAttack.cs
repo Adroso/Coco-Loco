@@ -48,6 +48,7 @@ public class EnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        anim.SetBool("AttackPlayer", false);
         timer += Time.deltaTime;
 
         if (timer >= attackSpeed && playerInRange /*&& enemyHealth.currentHealth > 0*/)
