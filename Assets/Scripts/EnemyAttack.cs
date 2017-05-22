@@ -51,7 +51,7 @@ public class EnemyAttack : MonoBehaviour
         anim.SetBool("AttackPlayer", false);
         timer += Time.deltaTime;
 
-        if (timer >= attackSpeed && playerInRange /*&& enemyHealth.currentHealth > 0*/)
+        if (timer >= attackSpeed && playerInRange && enemyHealth.currentHealth > 0)
         {
             Attack();
 
