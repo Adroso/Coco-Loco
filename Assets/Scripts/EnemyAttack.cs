@@ -70,8 +70,9 @@ public class EnemyAttack : MonoBehaviour
 
         if (playerHealth.currentHealth > 0)
         {
-            anim.SetBool("AttackPlayer", true);
+            
             playerHealth.TakeDamage(attackDamage);
+            anim.SetBool("AttackPlayer", true);
         }
        
     }
