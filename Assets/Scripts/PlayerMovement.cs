@@ -8,52 +8,58 @@ public class PlayerMovement : MonoBehaviour {
     public float speed = 6f;
     int floorMask;
     public bool isMoving;
+    Animator anim;
+    
 
     private void Awake()
     {
         floorMask = LayerMask.GetMask("Floor");
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
-        isMoving = false;
-
+        
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         float mouseInput = Input.GetAxis("Mouse X");
         Vector3 lookhere = new Vector3(0, mouseInput, 0);
         transform.Rotate(lookhere);
+        
 
         if (Input.GetKey(KeyCode.A))
         {
             moveLeft(speed);
-            isMoving = true;
+            
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             moveRight(speed);
-            isMoving = true;
+            
         }
 
         if (Input.GetKey(KeyCode.W))
         {
             moveForward(speed);
-            isMoving = true;
+           
         }
 
         if (Input.GetKey(KeyCode.S))
         {
             scootBack(speed);
-            isMoving = true;
+           
         }
 
-
-        //if (playerRigidbody != colliding with terrain) {
-        //    gravity += 100;
-        //}
+        if (playerRigidbody.velocity != Vector3.zero)
+        {
+            Animating(true);
+        }
+        else
+        {
+            Animating(false);
+        }
      
     }
 
@@ -83,4 +89,9 @@ public class PlayerMovement : MonoBehaviour {
     //    movement = movement.normalized * speed * Time.deltaTime;
     //    playerRigidbody.MovePosition(transform.position + movement);
     //}
+
+    void Animating (bool moving)
+    {
+        anim.SetBool("isMoving", moving);
+    }
 }
