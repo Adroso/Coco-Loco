@@ -18,6 +18,14 @@ public class PlayerMovement : MonoBehaviour {
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            attackAnimate();
+        }
+    }
+
     private void FixedUpdate()
     {
         Animating(false);
@@ -54,11 +62,6 @@ public class PlayerMovement : MonoBehaviour {
             scootBack(speed);
             Animating(true);
 
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            attackAnimate();
         }
      
     }
