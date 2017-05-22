@@ -65,9 +65,9 @@ public class EnemyAttack : MonoBehaviour
     {
         timer = 0f;
 
-        if (PlayerHealth.currentHealth > 0)
+        if (playerHealth.currentHealth > 0)
         {
-            PlayerHealth.TakeDamage(attackDamage);
+            playerHealth.TakeDamage(attackDamage);
         }
     }
 }
