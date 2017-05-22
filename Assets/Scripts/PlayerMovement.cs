@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        
+        Animating(false);
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         float mouseInput = Input.GetAxis("Mouse X");
@@ -31,34 +31,29 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKey(KeyCode.A))
         {
             moveLeft(speed);
-            
+            Animating(true);
+
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             moveRight(speed);
-            
+            Animating(true);
+
         }
 
         if (Input.GetKey(KeyCode.W))
         {
             moveForward(speed);
-           
+            Animating(true);
+
         }
 
         if (Input.GetKey(KeyCode.S))
         {
             scootBack(speed);
-           
-        }
-
-        if (playerRigidbody.velocity != Vector3.zero)
-        {
             Animating(true);
-        }
-        else
-        {
-            Animating(false);
+
         }
      
     }
