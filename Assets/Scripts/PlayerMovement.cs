@@ -89,4 +89,12 @@ public class PlayerMovement : MonoBehaviour {
     {
         anim.SetBool("isMoving", moving);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Water")
+        {
+            anim.SetTrigger("Die");
+        }
+    }
 }
