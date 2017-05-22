@@ -8,7 +8,7 @@ public class EnemyHealth : MonoBehaviour {
     public int startingHealth = 100;            // The amount of health the enemy starts the game with.
     public int currentHealth;                   // The current health the enemy has.
     public float sinkSpeed = 2.5f;              // The speed at which the enemy sinks through the floor when dead.
-    public int scoreValue = 10;                 // The amount added to the player's score when the enemy dies.
+    public int scoreValue = 1;                 // The amount added to the player's score when the enemy dies.
     public AudioClip deathClip;
 
     Animator anim;                              // Reference to the animator.
@@ -65,6 +65,8 @@ public class EnemyHealth : MonoBehaviour {
         // Change the audio clip of the audio source to the death clip and play it (this will stop the hurt clip playing).
         enemyAudio.clip = deathClip;
         enemyAudio.Play();
+        ScoreManager.score += scoreValue;
+
     }
 
 
@@ -78,9 +80,6 @@ public class EnemyHealth : MonoBehaviour {
 
         // The enemy should no sink.
         isSinking = true;
-
-        // Increase the score by the enemy's score value.
-        //ScoreManager.score += scoreValue;
 
         // After 2 seconds destory the enemy.
         Destroy(gameObject, 2f);
