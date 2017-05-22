@@ -42,7 +42,6 @@ public class EnemyAttack : MonoBehaviour
         {
             // ... the player is no longer in range.
             playerInRange = false;
-            anim.SetBool("AttackPlayer", false);
         }
     }
 
