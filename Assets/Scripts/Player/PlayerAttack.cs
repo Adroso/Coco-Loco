@@ -17,9 +17,9 @@ public class PlayerAttack : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        //enemy = GameObject.FindGameObjectWithTag("Enemy");
         attackAudio = GetComponent<AudioSource>();
-        enemyHealth = enemy.GetComponent<EnemyHealth>();
+        //enemyHealth = enemy.GetComponent<EnemyHealth>();
         anim = GetComponent<Animator>();
     }
 
@@ -43,6 +43,8 @@ public class PlayerAttack : MonoBehaviour {
     void Update () {
         timer += Time.deltaTime;
 
+        
+
         if (Input.GetMouseButton(0) && (timer >= attackSpeed) && (Time.timeScale != 0))
         {
             Attack();
@@ -53,13 +55,15 @@ public class PlayerAttack : MonoBehaviour {
     {             
         anim.SetTrigger("Attack");
 
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+
         timer = 0f;
 
         //attackAudio.Play();
 
-        if(enemyInRange)
+        if (enemyHealth != null && enemyInRange)
         {
-
             //attackParticles.Stop();
             //attackParticles.Play();
 
