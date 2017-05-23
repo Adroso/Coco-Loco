@@ -21,14 +21,6 @@ public class PlayerMovement : MonoBehaviour {
         playerHealth = GetComponent<PlayerHealth>();
     }
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            attackAnimate();
-        }
-    }
-
     private void FixedUpdate()
     {
         Animating(false);
@@ -37,7 +29,6 @@ public class PlayerMovement : MonoBehaviour {
         float mouseInput = Input.GetAxis("Mouse X");
         Vector3 lookhere = new Vector3(0, mouseInput, 0);
         transform.Rotate(lookhere);
-        
 
         if (Input.GetKey(KeyCode.A))
         {
@@ -66,7 +57,7 @@ public class PlayerMovement : MonoBehaviour {
             Animating(true);
 
         }
-     
+
     }
 
     void moveRight(float speed)
