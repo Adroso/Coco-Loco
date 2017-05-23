@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour {
     int floorMask;
     public bool isMoving;
     Animator anim;
-    
 
 
     private void Awake()
@@ -80,13 +79,6 @@ public class PlayerMovement : MonoBehaviour {
         transform.localPosition -= transform.forward * speed * Time.deltaTime;
     }
 
-    //void Move(float h, float v)
-    //{
-    //    movement.Set(h, 0f, v);
-    //    movement = movement.normalized * speed * Time.deltaTime;
-    //    playerRigidbody.MovePosition(transform.position + movement);
-    //}
-
     void Animating (bool moving)
     {
         anim.SetBool("isMoving", moving);
@@ -101,10 +93,5 @@ public class PlayerMovement : MonoBehaviour {
             playerHealth.TakeDamage(100);
             
         }
-    }
-
-    private void attackAnimate()
-    {
-        anim.SetTrigger("Attack");
     }
 }

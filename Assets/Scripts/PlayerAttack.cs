@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour {
 
     public int attackDamage = 100;
-    public float attackSpeed = 0.5f;
+    public float attackSpeed = 1.0f;
 
     float timer;
     Animator anim;
@@ -20,6 +20,7 @@ public class PlayerAttack : MonoBehaviour {
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         attackAudio = GetComponent<AudioSource>();
         enemyHealth = enemy.GetComponent<EnemyHealth>();
+        anim = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,7 +50,7 @@ public class PlayerAttack : MonoBehaviour {
 	}
 
     void Attack()
-    {
+    {             
         anim.SetTrigger("Attack");
 
         timer = 0f;
