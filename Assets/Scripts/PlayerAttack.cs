@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour {
 
     public int attackDamage = 100;
-    public float attackSpeed = 1.0f;
+    public float attackSpeed = 0.5f;
 
     float timer;
     Animator anim;
@@ -43,7 +43,7 @@ public class PlayerAttack : MonoBehaviour {
     void Update () {
         timer += Time.deltaTime;
 
-        if (Input.GetMouseButton(0) && timer >= attackSpeed && Time.timeScale != 0)
+        if (Input.GetMouseButton(0) && (timer >= attackSpeed) && (Time.timeScale != 0))
         {
             Attack();
         }
@@ -59,10 +59,11 @@ public class PlayerAttack : MonoBehaviour {
 
         if(enemyInRange)
         {
+
+            //attackParticles.Stop();
+            //attackParticles.Play();
+
             enemyHealth.TakeDamage(attackDamage);
         }
-
-        //attackParticles.Stop();
-        //attackParticles.Play();
     }
 }
