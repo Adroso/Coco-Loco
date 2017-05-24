@@ -69,7 +69,6 @@ public class PlayerMovement : MonoBehaviour {
 
         if (isMoving == true)
         {
-            Debug.Log("Audio");
             source.clip = runningClip;
             source.enabled = true;
             source.loop = true;
