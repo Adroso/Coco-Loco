@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour {
     public int attackDamage = 100;
     public float attackSpeed = 0.5f;
     public float distance;
+    public AudioClip attackEff;
 
     float timer;
     Animator anim;
@@ -67,6 +68,9 @@ public class PlayerAttack : MonoBehaviour {
 
     void Attack()
     {
+        attackAudio.clip = attackEff;
+        attackAudio.Play();
+
         anim.SetTrigger("Attack");
 
         gameObjs = GameObject.FindGameObjectsWithTag("Enemy");
