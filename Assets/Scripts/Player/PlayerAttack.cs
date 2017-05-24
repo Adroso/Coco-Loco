@@ -68,9 +68,7 @@ public class PlayerAttack : MonoBehaviour {
 
     void Attack()
     {
-        attackAudio.clip = attackEff;
-        attackAudio.Play();
-
+       
         anim.SetTrigger("Attack");
 
         gameObjs = GameObject.FindGameObjectsWithTag("Enemy");
