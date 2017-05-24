@@ -30,8 +30,10 @@ public class PlayerAttack : MonoBehaviour {
        
             timer += Time.deltaTime;        
 
-        if (Input.GetMouseButton(0) && (timer >= attackSpeed) && (Time.timeScale != 0))
+        if (Input.GetMouseButtonDown(0) && (timer >= attackSpeed) && (Time.timeScale != 0))
         {
+            Debug.Log(timer);
+            Debug.Log(attackSpeed);
             Attack();
         }
 	}
@@ -59,8 +61,10 @@ public class PlayerAttack : MonoBehaviour {
 
     void Attack()
     {
-
+        Debug.Log("message");
         anim.SetTrigger("Attack");
+
+        timer = 0;
 
         gameObjs = GameObject.FindGameObjectsWithTag("Enemy");
 
