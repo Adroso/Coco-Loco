@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             anim.SetTrigger("Die");
             //Kills Player
-            playerHealth.TakeDamage(100);
+            playerHealth.TakeDamage(1000);
             
         }
     }

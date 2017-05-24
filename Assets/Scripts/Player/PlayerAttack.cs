@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour {
 
     public int attackDamage = 100;
     public float attackSpeed = 0.5f;
+    public float distance;
 
     float timer;
     Animator anim;
@@ -14,10 +15,12 @@ public class PlayerAttack : MonoBehaviour {
     bool enemyInRange;
     EnemyHealth enemyHealth;
     GameObject enemy;
+    Ray castRay = new Ray();
+  
+   
 
     // Use this for initialization
     void Awake () {
-        //enemy = GameObject.FindGameObjectWithTag("Enemy");
         attackAudio = GetComponent<AudioSource>();
         //enemyHealth = enemy.GetComponent<EnemyHealth>();
         anim = GetComponent<Animator>();
@@ -25,9 +28,11 @@ public class PlayerAttack : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.gameObject == enemy)
         {
             enemyInRange = true;
+               
         }
     }
 
@@ -41,6 +46,8 @@ public class PlayerAttack : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
+
         timer += Time.deltaTime;
 
         
@@ -54,20 +61,36 @@ public class PlayerAttack : MonoBehaviour {
     void Attack()
     {             
         anim.SetTrigger("Attack");
+        //enemy = GameObject.FindGameObjectWithTag("Enemy");
+        //EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
 
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
-        EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+        RaycastHit hit;
+        castRay.origin = transform.position;
+        castRay.direction = transform.forward;
 
-        timer = 0f;
+        if (Physics.Raycast(castRay, out hit))
+        {
+            EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(attackDamage);
+            }
+            distance = hit.distance;
+            
+        }
+
+
+
+            timer = 0f;
 
         //attackAudio.Play();
 
-        if (enemyHealth != null && enemyInRange)
-        {
-            //attackParticles.Stop();
-            //attackParticles.Play();
+        //if (enemyHealth == null && enemyInRange)
+        //{
+        //    //attackParticles.Stop();
+        //    //attackParticles.Play();
 
-            enemyHealth.TakeDamage(attackDamage);
-        }
+        //    enemyHealth.TakeDamage(attackDamage);
+        //}
     }
 }
