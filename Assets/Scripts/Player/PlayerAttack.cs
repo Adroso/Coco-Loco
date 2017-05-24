@@ -61,6 +61,9 @@ public class PlayerAttack : MonoBehaviour {
     {
         anim.SetTrigger("Attack");
 
+        attackAudio.clip = attackEff;
+        attackAudio.Play();
+
         timer = 0;
 
         gameObjs = GameObject.FindGameObjectsWithTag("Enemy");
@@ -75,7 +78,6 @@ public class PlayerAttack : MonoBehaviour {
                 {
                     enemyHealth.TakeDamage(attackDamage);
                 }
-                
             }
         }
     }
