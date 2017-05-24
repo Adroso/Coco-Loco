@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour {
     public float sinkSpeed = 2.5f;              // The speed at which the enemy sinks through the floor when dead.
     public int scoreValue = 1;                 // The amount added to the player's score when the enemy dies.
     public AudioClip deathClip;
+    public bool inRange;
 
     Animator anim;                              // Reference to the animator.
     AudioSource enemyAudio;                     // Reference to the audio source.
@@ -23,8 +24,8 @@ public class EnemyHealth : MonoBehaviour {
         anim = GetComponent<Animator>();
         enemyAudio = GetComponent<AudioSource>();
         capsuleCollider = GetComponent<CapsuleCollider>();
-
         currentHealth = startingHealth;
+        inRange = false;
     }
 	
 	// Update is called once per frame
@@ -71,6 +72,16 @@ public class EnemyHealth : MonoBehaviour {
 
     }
 
+    //This preps the script to take damage
+    public void setInRange()
+    {
+        inRange = true;
+    }
+
+    public void setNotInRange()
+    {
+        inRange = false;
+    }
 
     //public void StartSinking()
     //{

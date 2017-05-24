@@ -51,6 +51,7 @@ public class PlayerAttack : MonoBehaviour {
         if(other.tag == "Enemy")
         {
             enemyInRange = true;
+            other.gameObject.GetComponent<EnemyHealth>().setInRange();
             
         }
         
@@ -62,6 +63,7 @@ public class PlayerAttack : MonoBehaviour {
         if (other.tag == "Enemy")
         {
             enemyInRange = false;
+            other.gameObject.GetComponent<EnemyHealth>().setNotInRange();
         }
         
 
@@ -81,7 +83,12 @@ public class PlayerAttack : MonoBehaviour {
             foreach(GameObject go in gameObjs)
             {
                 EnemyHealth enemyHealth = go.GetComponent<EnemyHealth>();
-                enemyHealth.TakeDamage(attackDamage);
+
+                if(enemyHealth.inRange == true)
+                {
+                    enemyHealth.TakeDamage(attackDamage);
+                }
+                
             }
         }
         else
