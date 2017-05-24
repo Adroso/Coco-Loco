@@ -16,6 +16,7 @@ public class PlayerHealth : MonoBehaviour
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
     private float timestamp = 0f; //delays regen
     private float regenDelayTS = 0f; //delays regening health all at once
+    private float timer;
 
 
     Animator anim;
@@ -47,8 +48,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (damaged)
         {
-            damageImage.color = flashColour;
-            
+            Invoke("ColourFlash", 0.5f);
         }
         else
         {
@@ -57,6 +57,11 @@ public class PlayerHealth : MonoBehaviour
         }
 
         damaged = false;
+    }
+
+    void ColourFlash()
+    {
+        damageImage.color = flashColour;
     }
 
     public void TakeDamage(int amount)

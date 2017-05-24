@@ -32,8 +32,6 @@ public class PlayerAttack : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0) && (timer >= attackSpeed) && (Time.timeScale != 0))
         {
-            Debug.Log(timer);
-            Debug.Log(attackSpeed);
             Attack();
         }
 	}
@@ -61,7 +59,6 @@ public class PlayerAttack : MonoBehaviour {
 
     void Attack()
     {
-        Debug.Log("message");
         anim.SetTrigger("Attack");
 
         timer = 0;
