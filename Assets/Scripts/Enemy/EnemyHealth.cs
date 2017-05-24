@@ -58,6 +58,8 @@ public class EnemyHealth : MonoBehaviour {
     {
         isDead = true;
 
+        GetComponent<NavMeshAgent>().enabled = false;
+
         // Turn the collider into a trigger so shots can pass through it.
         capsuleCollider.isTrigger = true;
 
@@ -83,19 +85,4 @@ public class EnemyHealth : MonoBehaviour {
     {
         inRange = false;
     }
-
-    //public void StartSinking()
-    //{
-    //    // Find and disable the Nav Mesh Agent.
-    //    GetComponent<NavMeshAgent>().enabled = false;
-
-    //    // Find the rigidbody component and make it kinematic (since we use Translate to sink the enemy).
-    //    GetComponent<Rigidbody>().isKinematic = true;
-
-    //    // The enemy should no sink.
-    //    isSinking = true;
-
-    //    // After 2 seconds destory the enemy.
-    //    Destroy(gameObject, 2f);
-    //}
 }
