@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     int floorMask;
     public bool isMoving;
     Animator anim;
+    
 
 
     private void Awake()
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour {
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerHealth = GetComponent<PlayerHealth>();
+        
     }
 
     private void FixedUpdate()
@@ -54,7 +56,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             scootBack(speed);
             Animating(true);
-
+            
         }
 
     }
@@ -82,6 +84,7 @@ public class PlayerMovement : MonoBehaviour {
     void Animating (bool moving)
     {
         anim.SetBool("isMoving", moving);
+        
     }
 
     private void OnTriggerEnter(Collider other)
