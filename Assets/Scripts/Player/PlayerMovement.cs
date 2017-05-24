@@ -10,7 +10,9 @@ public class PlayerMovement : MonoBehaviour {
     int floorMask;
     public bool isMoving;
     Animator anim;
-    
+    public AudioClip runningClip;
+    AudioSource source;
+
 
 
     private void Awake()
@@ -19,11 +21,13 @@ public class PlayerMovement : MonoBehaviour {
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerHealth = GetComponent<PlayerHealth>();
-        
+        source = GetComponent<AudioSource>();
+
     }
 
     private void FixedUpdate()
     {
+        isMoving = false;
         Animating(false);
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
@@ -35,6 +39,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             moveLeft(speed);
             Animating(true);
+            isMoving = true;
 
         }
 
@@ -42,6 +47,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             moveRight(speed);
             Animating(true);
+            isMoving = true;
 
         }
 
@@ -49,6 +55,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             moveForward(speed);
             Animating(true);
+            isMoving = true;
 
         }
 
@@ -56,8 +63,26 @@ public class PlayerMovement : MonoBehaviour {
         {
             scootBack(speed);
             Animating(true);
-            
+            isMoving = true;
+
         }
+
+        if (isMoving == true)
+        {
+            Debug.Log("Audio");
+            source.clip = runningClip;
+            source.enabled = true;
+            source.loop = true;
+            
+
+        }
+        else
+        {
+            source.enabled = false;
+            source.loop = false;
+
+        }
+        
 
     }
 
@@ -84,6 +109,7 @@ public class PlayerMovement : MonoBehaviour {
     void Animating (bool moving)
     {
         anim.SetBool("isMoving", moving);
+        
         
     }
 

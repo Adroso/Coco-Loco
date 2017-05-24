@@ -68,6 +68,7 @@ public class PlayerAttack : MonoBehaviour {
     void Attack()
     {
         anim.SetTrigger("Attack");
+
         gameObjs = GameObject.FindGameObjectsWithTag("Enemy");
 
         if (enemyInRange == true)
@@ -98,7 +99,7 @@ public class PlayerAttack : MonoBehaviour {
 
     void Attackold()
     {             
-        anim.SetTrigger("Attack");
+        //anim.SetTrigger("Attack");
         //enemy = GameObject.FindGameObjectWithTag("Enemy");
         //EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
 
