@@ -17,10 +17,11 @@ public class EnemyBehaviour : MonoBehaviour {
         //playerHealth = player.GetComponent<PlayerHealth>();
         //enemyHealth = GetComponent <EnemyHealth>():
         nav = GetComponent<NavMeshAgent>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        nav.speed = speed;
+    }
+
+    // Update is called once per frame
+    void Update () {
 		//if (enemyHealth.currentHealth > 0 && PlayerHealth.currentHealth > 0) {
             nav.SetDestination(player.position);
         //}
