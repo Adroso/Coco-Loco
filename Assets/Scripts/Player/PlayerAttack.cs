@@ -16,39 +16,26 @@ public class PlayerAttack : MonoBehaviour {
     EnemyHealth enemyHealth;
     GameObject enemy;
     Ray castRay = new Ray();
-  
-   
+    GameObject[] gameObjs;
+
+
 
     // Use this for initialization
     void Awake () {
         attackAudio = GetComponent<AudioSource>();
-        //enemyHealth = enemy.GetComponent<EnemyHealth>();
         anim = GetComponent<Animator>();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        
-        if (other.gameObject == enemy)
-        {
-            enemyInRange = true;
-               
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == enemy)
-        {
-            enemyInRange = false;
-        }
+        enemyInRange = false;
+        //enemyHealth = enemy.GetComponent<EnemyHealth>();
     }
 
     // Update is called once per frame
     void Update () {
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        if (enemyInRange == true)
+        {
+            Debug.Log("TRTURURU");
+        }
 
-        timer += Time.deltaTime;
+            timer += Time.deltaTime;
 
         
 
@@ -58,7 +45,55 @@ public class PlayerAttack : MonoBehaviour {
         }
 	}
 
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Enemy")
+        {
+            enemyInRange = true;
+            
+        }
+        
+
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            enemyInRange = false;
+        }
+        
+
+    }
+
     void Attack()
+    {
+        anim.SetTrigger("Attack");
+        gameObjs = GameObject.FindGameObjectsWithTag("Enemy");
+
+        if (enemyInRange == true)
+        {
+            Debug.Log("In Range");
+            //EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+            //enemyHealth.TakeDamage(attackDamage);
+
+            foreach(GameObject go in gameObjs)
+            {
+                EnemyHealth enemyHealth = go.GetComponent<EnemyHealth>();
+                enemyHealth.TakeDamage(attackDamage);
+            }
+        }
+        else
+        {
+            Debug.Log("Not In Range");
+            
+        }
+        
+
+    }
+
+    void Attackold()
     {             
         anim.SetTrigger("Attack");
         //enemy = GameObject.FindGameObjectWithTag("Enemy");
@@ -66,7 +101,8 @@ public class PlayerAttack : MonoBehaviour {
 
         RaycastHit hit;
         castRay.origin = transform.position;
-        castRay.direction = transform.forward;
+        castRay.direction = transform.TransformDirection(Vector3.forward);
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.green);
 
         if (Physics.Raycast(castRay, out hit))
         {
@@ -79,18 +115,16 @@ public class PlayerAttack : MonoBehaviour {
             
         }
 
-
-
             timer = 0f;
 
         //attackAudio.Play();
 
-        //if (enemyHealth == null && enemyInRange)
-        //{
-        //    //attackParticles.Stop();
-        //    //attackParticles.Play();
+        if (enemyHealth == null && enemyInRange)
+        {
+            //attackParticles.Stop();
+            //attackParticles.Play();
 
-        //    enemyHealth.TakeDamage(attackDamage);
-        //}
+            enemyHealth.TakeDamage(attackDamage);
+        }
     }
 }
