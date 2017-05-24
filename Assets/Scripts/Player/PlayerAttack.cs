@@ -30,11 +30,7 @@ public class PlayerAttack : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (enemyInRange == true)
-        {
-            Debug.Log("TRTURURU");
-        }
-
+       
             timer += Time.deltaTime;
 
         
@@ -76,7 +72,7 @@ public class PlayerAttack : MonoBehaviour {
 
         if (enemyInRange == true)
         {
-            Debug.Log("In Range");
+            //Debug.Log("In Range");
             //EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
             //enemyHealth.TakeDamage(attackDamage);
 
@@ -93,7 +89,7 @@ public class PlayerAttack : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Not In Range");
+            //Debug.Log("Not In Range");
             
         }
         
