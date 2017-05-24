@@ -67,12 +67,9 @@ public class EnemyHealth : MonoBehaviour {
         anim.SetTrigger("Dead");
 
         // Change the audio clip of the audio source to the death clip and play it (this will stop the hurt clip playing).
-        //enemyAudio.clip = deathClip;
-        //enemyAudio.Play();
         ScoreManager.score += scoreValue;
 
         Destroy(gameObject, 3f);
-
     }
 
     //This preps the script to take damage

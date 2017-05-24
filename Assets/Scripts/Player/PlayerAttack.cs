@@ -7,11 +7,9 @@ public class PlayerAttack : MonoBehaviour {
     public int attackDamage = 100;
     public float attackSpeed = 0.5f;
     public float distance;
-    public AudioClip attackEff;
 
     float timer;
     Animator anim;
-    AudioSource attackAudio;
     ParticleSystem attackParticles;
     bool enemyInRange;
     EnemyHealth enemyHealth;
@@ -20,7 +18,6 @@ public class PlayerAttack : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        attackAudio = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         enemyInRange = false;
     }
@@ -53,16 +50,11 @@ public class PlayerAttack : MonoBehaviour {
             enemyInRange = false;
             other.gameObject.GetComponent<EnemyHealth>().setNotInRange();
         }
-        
-
     }
 
     void Attack()
     {
         anim.SetTrigger("Attack");
-
-        attackAudio.clip = attackEff;
-        attackAudio.Play();
 
         timer = 0;
 
