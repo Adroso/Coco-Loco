@@ -67,21 +67,23 @@ public class EnemyHealth : MonoBehaviour {
         enemyAudio.Play();
         ScoreManager.score += scoreValue;
 
+        Destroy(gameObject, 3f);
+
     }
 
 
-    public void StartSinking()
-    {
-        // Find and disable the Nav Mesh Agent.
-        GetComponent<NavMeshAgent>().enabled = false;
+    //public void StartSinking()
+    //{
+    //    // Find and disable the Nav Mesh Agent.
+    //    GetComponent<NavMeshAgent>().enabled = false;
 
-        // Find the rigidbody component and make it kinematic (since we use Translate to sink the enemy).
-        GetComponent<Rigidbody>().isKinematic = true;
+    //    // Find the rigidbody component and make it kinematic (since we use Translate to sink the enemy).
+    //    GetComponent<Rigidbody>().isKinematic = true;
 
-        // The enemy should no sink.
-        isSinking = true;
+    //    // The enemy should no sink.
+    //    isSinking = true;
 
-        // After 2 seconds destory the enemy.
-        Destroy(gameObject, 2f);
-    }
+    //    // After 2 seconds destory the enemy.
+    //    Destroy(gameObject, 2f);
+    //}
 }
